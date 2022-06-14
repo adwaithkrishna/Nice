@@ -16,4 +16,22 @@ async def on_ready():
 async def hello(ctx):
     await ctx.send("hi")
 
+
+@bot.command()
+async def load(ctx, extension):
+    await bot.load_extension(f"cogs.{extension}")
+    await ctx.send(f"Loaded {extension}")
+
+
+@bot.command()
+async def unload(ctx, extension):
+    await bot.unload_extension(f"cogs.{extension}")
+    await ctx.send(f"Unloaded {extension}")
+
+
+@bot.command()
+async def reload(ctx, extension):
+    await bot.reload_extension(f"cogs.{extension}")
+    await ctx.send(f"Reloaded {extension}")
+
 bot.run(config.token)
