@@ -1,10 +1,12 @@
 import discord
 from discord.ext import commands
 import config
+import jishaku
 
 intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix='-', intents=intents)
+jishaku.Flags.NO_DM_TRACEBACK = True
 
 
 @bot.event
