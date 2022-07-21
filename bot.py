@@ -30,18 +30,21 @@ async def hello(ctx):
 
 
 @bot.command()
+@commands.is_owner()
 async def load(ctx, extension):
     await bot.load_extension(extension)
     await ctx.send(f"Loaded {extension}")
 
 
 @bot.command()
+@commands.is_owner()
 async def unload(ctx, extension):
     await bot.unload_extension(extension)
     await ctx.send(f"Unloaded {extension}")
 
 
 @bot.command()
+@commands.is_owner()
 async def reload(ctx, extension):
     await bot.reload_extension(extension)
     await ctx.send(f"Reloaded {extension}")
