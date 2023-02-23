@@ -1,3 +1,5 @@
+from typing import Literal
+
 import discord
 from discord import app_commands
 from discord.ext import commands
@@ -14,6 +16,26 @@ class Fun(commands.Cog):
         resp = await self.bot.session.get(f"https://api.popcat.xyz/translate?to=en&text={message.content}")
         resp_json = await resp.json()
         await interaction.response.send_message(resp_json["translated"])
+
+    @app_commands.command()
+    @app_commands.describe(member="The member to wish")
+    async def wish(
+            self,
+            interaction: discord.Interaction,
+            member: discord.Member,
+            thing: Literal['birthday', 'christmas', 'day', 'easter']
+    ):
+        """Wishes someone
+
+        Parameters
+        ----------
+        interaction
+        member : discord.Member
+            The member to wish
+        thing
+            The reason to wish
+        """
+        await interaction.response.send_message(f"Happy {thing} {member.mention}")
 
 
 async def setup(bot):
